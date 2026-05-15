@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -89,13 +88,6 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $user = Auth::user();
-        if ($user) {
-            User::where('id', $user->id)->update([
-                'remember_token' => null,
-            ]);
-        }
-
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

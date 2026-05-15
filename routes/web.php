@@ -29,7 +29,7 @@ Route::prefix('tai-khoan')->name('client.')->controller(ClientAuthController::cl
     Route::post('dang-nhap', 'login')->name('login.submit');
     Route::get('dang-ky', 'showRegister')->name('register');
     Route::post('dang-ky', 'register')->name('register.submit');
-    Route::post('dang-xuat', 'logout')->name('logout');
+    Route::post('dang-xuat', 'logout')->middleware('auth')->name('logout');
 });
 
 Route::controller(ClientProductController::class)->group(function () {
